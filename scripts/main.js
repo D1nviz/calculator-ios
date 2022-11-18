@@ -15,7 +15,9 @@ function allClear() {
     equalAction = false;
     out.textContent = 0;
 }
+
 document.querySelector('.ac').onclick = allClear;
+
 document.querySelector('.buttons').onclick = (event) => {
     if (!event.target.classList.contains('btn')) return;
     if (event.target.classList.contains('ac')) return;
@@ -70,10 +72,20 @@ document.querySelector('.buttons').onclick = (event) => {
             case '×':
                 firsValue = firsValue *secondValue;
                 break;
-            case '%':
-                firsValue = firsValue % secondValue;
+            case'%':
+                firsValue = firsValue/100*secondValue;
+                break;
+            case'±':
+                
+                firsValue = firsValue*(-1);
+                break;
+            default:
+                alert("Please, choose numbers and operation");
                 break;
             
+        }
+        if(firsValue%secondValue!==0){
+            firsValue = firsValue.toFixed(2);
         }
         equalAction = true;
         out.textContent = firsValue; 
