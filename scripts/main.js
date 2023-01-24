@@ -4,7 +4,7 @@ let operator = '';
 let equalAction = false;
 
 const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
-const action = ['-', '+', '×', '÷','%','±'];
+const action = ['-', '+', '×', '÷', '%', '±'];
 
 const out = document.querySelector('.calculator-screen p');
 
@@ -15,7 +15,9 @@ function allClear() {
     equalAction = false;
     out.textContent = 0;
 }
+
 document.querySelector('.ac').onclick = allClear;
+
 document.querySelector('.buttons').onclick = (event) => {
     if (!event.target.classList.contains('btn')) return;
     if (event.target.classList.contains('ac')) return;
@@ -24,20 +26,17 @@ document.querySelector('.buttons').onclick = (event) => {
     const key = event.target.textContent;
 
     if (digit.includes(key)) {
-        if (secondValue ==='' && operator ===''){
+        if (secondValue === '' && operator === '') {
             firsValue += key;
             out.textContent = firsValue;
-        }
-
-        else if (firsValue !== '' && secondValue !== '' && equalAction) {
+        } else if (firsValue !== '' && secondValue !== '' && equalAction) {
             secondValue = key;
             equalAction = false;
             out.textContent = secondValue;
-        }
-        else {
+        } else {
             secondValue += key;
             out.textContent = secondValue;
-            
+
         }
         return;
     }
@@ -68,15 +67,22 @@ document.querySelector('.buttons').onclick = (event) => {
                 firsValue = firsValue / secondValue;
                 break;
             case '×':
-                firsValue = firsValue *secondValue;
+                firsValue = firsValue * secondValue;
                 break;
-            case '%':
-                firsValue = firsValue % secondValue;
+            case'%':
+                firsValue = firsValue / 100 * secondValue;
                 break;
-            
-        }
-        equalAction = true;
-        out.textContent = firsValue; 
-    }
+            case'±':
 
+                firsValue = firsValue * (-1);
+                break;
+            default:
+                alert("Please, choose numbers and operation");
+                break;
+
+        }
+        if(!Number.isInteger(firsValue)) firsValue = firsValue.toFixed(2);
+        equalAction = true;
+        out.textContent = firsValue;
+    }
 }

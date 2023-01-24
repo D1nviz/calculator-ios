@@ -1,6 +1,7 @@
 body{
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     color:white;
+    background: gray;
 }
 .calculator{
     position: absolute;
@@ -20,12 +21,14 @@ body{
     justify-items: end;
     align-items: end;
     height: 100px;
-    overflow: hidden;
+    overflow: clip;
     
 }
 .calculator-screen p{
-    font-size: 48px;
+    font-size: 3vw;
     padding-bottom: 0;
+    
+    
 }
 .bg-orange{
     background: #F69906;
